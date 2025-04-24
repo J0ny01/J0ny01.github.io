@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>João Lopes | Portfólio</title>
+  <style>
+    /* Estilos CSS */
+    :root[data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --header-bg: linear-gradient(135deg, #6c5ce7, #a363d9);
+      --nav-bg: #1f1f1f;
+      --project-bg: #1c1c1c;
+      --border-color: #333;
+      --accent-color: #a363d9;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      transition: all 0.3s ease;
+      cursor: none;
+    }
+
+    header {
+      background: var(--header-bg);
+      padding: 80px 20px;
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      animation: fadeInDown 1s ease-out forwards;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px var(--shadow-color);
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Nova navegação corrigida */
+    nav {
+      background: var(--nav-bg);
+      padding: 0.6rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 8px var(--shadow-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideInDown 1s ease-out forwards;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      margin: 0;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+      background: rgba(108, 92, 231, 0.1);
+    }
+
+    #languageSelector {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+      position: relative;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .project {
+      background: var(--project-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px var(--shadow-color);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    .project-button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+      display: inline-block;
+    }
+
+    .project-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px var(--shadow-color);
+    }
+
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    #contactForm {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: var(--project-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px var(--shadow-color);
+    }
+
+    #contactForm label {
+      font-size: 1.1rem;
+      color: var(--text-color);
+    }
+
+    #contactForm input,
+    #contactForm textarea {
+      padding: 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    #contactForm input:focus,
+    #contactForm textarea:focus {
+      border-color: var(--accent-color);
+      outline: none;
+    }
+
+    #contactForm textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    #contactButton {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px var(--shadow-color);
+    }
+
+    #contactButton:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--shadow-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--accent-color);
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: var(--nav-bg);
+      padding: 2rem 0;
+      text-align: center;
+      margin-top: 3rem;
+      box-shadow: 0 -2px 12px var(--shadow-color);
+    }
+
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--accent-color);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      z-index: 10000;
+    }
+
+    .cursor.hover {
+      transform: translate(-50%, -50%) scale(1.5);
+      background-color: var(--accent-color);
+      opacity: 0.7;
+    }
+
+    .cursor.active {
+      transform: translate(-50%, -50%) scale(0.8);
+      background-color: var(--accent-color);
+    }
+
+    .cursor.in-modal {
+      mix-blend-mode: difference;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Estilos aprimorados para o modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      overflow-y: auto;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+    }
+
+    .modal-content {
+      background-color: var(--project-bg);
+      margin: 5% auto;
+      padding: 2.5rem;
+      border-radius: 16px;
+      width: 85%;
+      max-width: 950px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      color: var(--text-color);
+      position: relative;
+      transform: scale(0.9) translateY(-30px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(163, 99, 217, 0.2);
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .close-button:hover {
+      color: var(--accent-color);
+      background-color: rgba(0, 0, 0, 0.4);
+      transform: rotate(90deg);
+    }
+
+    .modal h2 {
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid rgba(163, 99, 217, 0.3);
+      padding-bottom: 0.8rem;
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin: 2rem 0;
+    }
+
+    .modal-info h4, .modal-code h4, .modal-screenshots h4 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .modal-info h4::after, .modal-code h4::after, .modal-screenshots h4::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+
+    .modal-info ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-info ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .modal-info ul li::before {
+      content: '•';
+      color: var(--accent-color);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    .modal-code {
+      position: relative;
+    }
+
+    .modal-code pre {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0;
+      border: 1px solid rgba(163, 99, 217, 0.2);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+      max-height: 300px;
+    }
+
+    .modal-code pre code {
+      display: block;
+    }
+
+    .code-label {
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      background: var(--accent-color);
+      color: white;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      z-index: 1;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .screenshot {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+      border: 1px solid rgba(163, 99, 217, 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .screenshot:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      border-color: var(--accent-color);
+    }
+
+    .screenshot img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: all 0.5s;
+    }
+
+    .screenshot:hover img {
+      transform: scale(1.05);
+    }
+
+    .screenshot img.zoomed {
+      transform: scale(1.1);
+    }
+
+    .screenshot p {
+      padding: 1rem;
+      text-align: center;
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-top: 1px solid rgba(163, 99, 217, 0.2);
+    }
+
+    /* Botões de navegação no modal */
+    .modal-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(163, 99, 217, 0.2);
+    }
+
+    .modal-nav button {
+      background: rgba(163, 99, 217, 0.2);
+      color: var(--text-color);
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal-nav button:hover {
+      background: var(--accent-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .modal-nav button i {
+      font-size: 0.9rem;
+    }
+
+    /* Responsividade para o modal */
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 90%;
+        padding: 1.8rem;
+        margin: 10% auto;
+      }
+      
+      .modal-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .modal-code pre {
+        max-height: 200px;
+      }
+      
+      .modal-nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .modal-nav button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 15% auto 5% auto;
+      }
+      
+      .screenshot-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .close-button {
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+      }
+    }
+
+    /* Responsividade para telas menores */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      nav {
+        flex-direction: column;
+        padding: 0.8rem;
+      }
+
+      nav ul {
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 0.8rem;
+      }
+
+      #languageSelector {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Responsividade para telas muito pequenas */
+    @media (max-width: 480px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav li {
+        width: 100%;
+        text-align: center;
+      }
+
+      #contactForm {
+        padding: 1rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+<body>
+  <header>
+    <h1>João Lopes</h1>
+    <p data-lang="pt">Desenvolvedor Web & Designer</p>
+    <p data-lang="en" style="display:none;">Web Developer & Designer</p>
+    <p data-lang="es" style="display:none;">Desarrollador Web y Diseñador</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li data-lang="pt"><a href="#about">Sobre</a></li>
+      <li data-lang="en" style="display:none;"><a href="#about">About</a></li>
+      <li data-lang="es" style="display:none;"><a href="#about">Sobre mí</a></li>
+
+      <li data-lang="pt"><a href="#projects">Projetos</a></li>
+      <li data-lang="en" style="display:none;"><a href="#projects">Projects</a></li>
+      <li data-lang="es" style="display:none;"><a href="#projects">Proyectos</a></li>
+
+      <li data-lang="pt"><a href="#language">Idiomas</a></li>
+      <li data-lang="en" style="display:none;"><a href="#language">Languages</a></li>
+      <li data-lang="es" style="display:none;"><a href="#language">Idiomas</a></li>
+
+      <li data-lang="pt"><a href="#experience">Experiências</a></li>
+      <li data-lang="en" style="display:none;"><a href="#experience">Experience</a></li>
+      <li data-lang="es" style="display:none;"><a href="#experience">Experiencia</a></li>
+
+      <li data-lang="pt"><a href="#skills">Habilidades</a></li>
+      <li data-lang="en" style="display:none;"><a href="#skills">Skills</a></li>
+      <li data-lang="es" style="display:none;"><a href="#skills">Habilidades</a></li>
+
+      <li data-lang="pt"><a href="#contact">Contato</a></li>
+      <li data-lang="en" style="display:none;"><a href="#contact">Contact</a></li>
+      <li data-lang="es" style="display:none;"><a href="#contact">Contacto</a></li>
+    </ul>
+    <select id="languageSelector">
+      <option value="pt">Português</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+    </select>
+  </nav>
+
+  <section id="about">
+    <h2 data-lang="pt">Sobre Mim</h2>
+    <h2 data-lang="en" style="display:none;">About Me</h2>
+    <h2 data-lang="es" style="display:none;">Sobre mí</h2>
+    <p data-lang="pt">Sou um estudante da Escola Secundária ESALV, no curso técnico de Sistemas Informáticos. Apaixonado por desenvolvimento web e design, busco sempre aprender novas tecnologias e aprimorar minhas habilidades.</p>
+    <p data-lang="en" style="display:none;">I'm a student at ESALV High School in the IT Systems technical course. Passionate about web development and design, I'm always looking to learn new technologies and improve my skills.</p>
+    <p data-lang="es" style="display:none;">Soy un estudiante en la escuela secundaria ESALV, en el curso técnico de Sistemas Informáticos. Apasionado por el desarrollo web y el diseño, siempre busco aprender nuevas tecnologías y mejorar mis habilidades.</p>
+  </section>
+
+  <section id="projects">
+    <h2 data-lang="pt">Projetos</h2>
+    <h2 data-lang="en" style="display:none;">Projects</h2>
+    <h2 data-lang="es" style="display:none;">Proyectos</h2>
+    <div class="project-grid">
+      <div class="project">
+        <h3>Calculadora em C</h3>
+        <p>Calculadora Simples em C com operações básicas e interface de linha de comando.</p>
+        <a href="https://github.com/J0ny01/Calculadora-C" target="_blank">
+          <button class="project-button">Link do Projeto</button>
+        </a>
+      </div>
+      
+      <div class="project">
+        <h3>Scripts FiveM</h3>
+        <p>Um script de Droga para o FiveM (GTA V) desenvolvido em Lua com sistema de inventário e interações.</p>
+        <button class="project-button" onclick="openModal('fivem-modal')">Ver Detalhes</button>
+      </div>
+      
+      <div class="project">
+        <h3>Site Responsivo</h3>
+        <p>Site responsivo desenvolvido com HTML, CSS e JavaScript para mim mesmmo.</p>
+        <a href="#" target="_blank">
+          <button class="project-button">Visualizar Site</button>
+        </a>
+      </div>
+
+      <div class="project">
+        <h3>App de Anotações</h3>
+        <p>Aplicativo simples para gerenciamento de anotações e tarefas diárias.</p>
+        <a href="#" target="_blank">
+          <button class="project-button">Ver Código</button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal do projeto aprimorado -->
+  <div id="fivem-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('fivem-modal')">&times;</span>
+      <h2>Scripts FiveM - Detalhes</h2>
+      
+      <div class="modal-grid">
+        <div class="modal-info">
+          <h4>Sobre o projeto</h4>
+          <p>Este projeto consiste em um script avançado para servidores FiveM (modificação do GTA V) que implementa um sistema de drogas com diversas funcionalidades:</p>
+          
+          <ul>
+            <li>Sistema de coleta de ingredientes em locais específicos do mapa</li>
+            <li>Processamento e fabricação de substâncias</li>
+            <li>Sistema de inventário personalizado para armazenamento</li>
+            <li>Mecânica de venda para NPCs em diferentes locais</li>
+            <li>Sistema de risco policial com níveis de procura</li>
+          </ul>
+          
+          <h4>Tecnologias utilizadas</h4>
+          <ul>
+            <li>Lua (linguagem principal)</li>
+            <li>Framework ESX para FiveM</li>
+            <li>MySQL para armazenamento de dados</li>
+            <li>JavaScript para elementos de interface</li>
+          </ul>
+        </div>
+        
+        <div class="modal-code">
+          <span class="code-label">Lua</span>
+          <h4>Exemplo de código</h4>
+          <pre><code>
+-- Sistema de coleta de recursos
+RegisterNetEvent('harvest:collect')
+AddEventHandler('harvest:collect', function(itemName, count)
+    local xPlayer = ESX.GetPlayerFromId(source)
+    
+    -- Verificar se o jogador tem espaço no inventário
+    if xPlayer.canCarryItem(itemName, count) then
+        -- Adicionar item ao inventário
+        xPlayer.addInventoryItem(itemName, count)
+        
+        -- Notificar o jogador
+        TriggerClientEvent('esx:showNotification', source, 
+          'Você coletou ' .. count .. 'x ' .. ESX.GetItemLabel(itemName))
+    else
+        -- Inventário cheio
+        TriggerClientEvent('esx:showNotification', source, 
+          'Seu inventário está cheio!')
+    end
+end)
+          </code></pre>
+        </div>
+      </div>
+      
+      <div class="modal-screenshots">
+        <h4>Capturas de tela</h4>
+        <div class="screenshot-grid">
+          <div class="screenshot">
+            <img src="/api/placeholder/400/250" alt="Sistema de coleta">
+            <p>Sistema de coleta de recursos</p>
+          </div>
+          <div class="screenshot">
+            <img src="/api/placeholder/400/250" alt="Interface de processamento">
+            <p>Interface de processamento</p>
+          </div>
+          <div class="screenshot">
+            <img src="/api/placeholder/400/250" alt="Sistema de venda">
+            <p>Sistema de venda para NPCs</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-nav">
+        <button onclick="alert('Funcionalidade em desenvolvimento!')">
+          <i class="fas fa-chevron-left"></i> Projeto anterior
+        </button>
+        <button onclick="window.open('https://github.com/J0ny01/fivem-scripts', '_blank')">
+          Ver no GitHub <i class="fas fa-external-link-alt"></i>
+        </button>
+        <button onclick="alert('Funcionalidade em desenvolvimento!')">
+          Próximo projeto <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <section id="language">
+    <h2 data-lang="pt">Idiomas</h2>
+    <h2 data-lang="en" style="display:none;">Languages</h2>
+    <h2 data-lang="es" style="display:none;">Idiomas</h2>
+    <p data-lang="pt">Fluente em Português (C1) e Inglês (C1), com conhecimentos intermediários em Espanhol (B1).</p>
+    <p data-lang="en" style="display:none;">Fluent in Portuguese (C1) and English (C1), with intermediate knowledge of Spanish (B1).</p>
+    <p data-lang="es" style="display:none;">Fluido en portugués (C1) e inglés (C1), con conocimientos intermedios de español (B1).</p>
+  </section>
+
+  <section id="experience">
+    <h2 data-lang="pt">Experiências</h2>
+    <h2 data-lang="en" style="display:none;">Experience</h2>
+    <h2 data-lang="es" style="display:none;">Experiencia</h2>
+    <ul>
+      <li data-lang="pt">Projetos pessoais: Scripts de FiveM e de Roblox desenvolvidos em Lua.</li>
+      <li data-lang="en" style="display:none;">Personal projects: FiveM and Roblox scripts developed in Lua.</li>
+      <li data-lang="es" style="display:none;">Proyectos personales: Scripts de FiveM y Roblox desarrollados en Lua.</li>
+      
+      <li data-lang="pt">Estágio em desenvolvimento web: Criação de sites responsivos e manutenção de conteúdo.</li>
+      <li data-lang="en" style="display:none;">Web development internship: Creating responsive websites and content maintenance.</li>
+      <li data-lang="es" style="display:none;">Prácticas en desarrollo web: Creación de sitios web responsivos y mantenimiento de contenido.</li>
+    </ul>
+  </section>
+
+  <section id="skills">
+    <h2 data-lang="pt">Habilidades</h2>
+    <h2 data-lang="en" style="display:none;">Skills</h2>
+    <h2 data-lang="es" style="display:none;">Habilidades</h2>
+    <ul>
+      <li>HTML, CSS, JavaScript</li>
+      <li>C (básico a intermediário)</li>
+      <li>Lua (intermediário)</li>
+      <li>Design Responsivo</li>
+      <li>Git & GitHub</li>
+      <li>Adobe Photoshop (básico)</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2 data-lang="pt">Contato</h2>
+    <h2 data-lang="en" style="display:none;">Contact</h2>
+    <h2 data-lang="es" style="display:none;">Contacto</h2>
+    <div class="contact-container">
+      <form action="https://formsubmit.co/joaolopes011@icloud.com" method="POST" id="contactForm">
+        <input type="hidden" name="_next" value="http://seusite.com/obrigado.html">
+        <input type="hidden" name="_captcha" value="false">
+        
+        <label for="name" data-lang="pt">Nome</label>
+        <label for="name" data-lang="en" style="display:none;">Name</label>
+        <label for="name" data-lang="es" style="display:none;">Nombre</label>
+        <input type="text" name="name" id="name" placeholder="" required>
+
+        <label for="email" data-lang="pt">E-mail</label>
+        <label for="email" data-lang="en" style="display:none;">E-mail</label>
+        <label for="email" data-lang="es" style="display:none;">Correo electrónico</label>
+        <input type="email" name="email" id="email" placeholder="" required>
+
+        <label for="message" data-lang="pt">Mensagem</label>
+        <label for="message" data-lang="en" style="display:none;">Message</label>
+        <label for="message" data-lang="es" style="display:none;">Mensaje</label>
+        <textarea name="message" id="message" placeholder="" required></textarea>
+
+        <button type="submit" id="contactButton" data-lang="pt">Enviar Mensagem</button>
+        <button type="submit" id="contactButton" data-lang="en" style="display:none;">Send Message</button>
+        <button type="submit" id="contactButton" data-lang="es" style="display:none;">Enviar Mensaje</button>
+      </form>
+
+      <div class="social-links">
+        <a href="https://github.com/J0ny01" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/J0ny01" target="_blank"><i class="fab fa-linkedin"></i></a>        
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 João Lopes. Todos os direitos reservados.
+  </footer>
+
+  <div class="cursor" id="customCursor"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cursor = document.getElementById('customCursor');
+      const links = document.querySelectorAll('a, button');
+      
+      // Inicializar com idioma português
+      changeLanguage('pt');
+      
+      // Hover effect on links
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          cursor.classList.add('hover');
+        });
+
+        link.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hover');
+        });
+      });
+
+      // Cursor tracking
+      document.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+        cursor.style.left = `${x}px`;
+        cursor.style.top = `${y}px`;
+      });
+
+      // Language selector functionality
+      const languageSelector = document.getElementById('languageSelector');
+      languageSelector.addEventListener('change', (e) => {
+        const selectedLang = e.target.value;
+        changeLanguage(selectedLang);
+      });
+
+      // Change language visibility based on selected language
+      function changeLanguage(language) {
+        // Ocultar todos os elementos com atributo data-lang
+        const langElements = document.querySelectorAll('[data-lang]');
+        langElements.forEach(el => {
+          if (el.getAttribute('data-lang') === language) {
+            el.style.display = 'block';
+          } else {
+            el.style.display = 'none';
+          }
+        });
+      }
+
+      // Cursor active state
+      document.addEventListener('mousedown', () => {
+        cursor.classList.add('active');
+      });
+
+      document.addEventListener('mouseup', () => {
+        cursor.classList.remove('active');
+      });
+      
+      // Adicionar ScrollReveal para animações
+      if (typeof ScrollReveal !== 'undefined') {
+        ScrollReveal().reveal('section', {
+          delay: 200,
+          distance: '30px',
+          duration: 800,
+          origin: 'bottom',
+          easing: 'ease-in-out'
+        });
+      }
+    });
+// Funções aprimoradas para controlar o modal
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden'; // Impede o scroll do body
+  
+  // Aplicar a classe active após um pequeno delay para acionar a animação
+  setTimeout(() => {
+    modal.classList.add('active');
+  }, 10);
+  
+  // Adicionar evento de teclado ESC para fechar
+  document.addEventListener('keydown', handleEscKey);
+  
+  // Adicionar classe ao cursor personalizado
+  const cursor = document.getElementById('customCursor');
+  if (cursor) {
+    cursor.classList.add('in-modal');
+  }
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  
+  // Remover a classe active primeiro para iniciar a animação de saída
+  modal.classList.remove('active');
+  
+  // Aguardar a animação terminar antes de esconder o modal
+  setTimeout(() => {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restaurar o scroll do body
+  }, 400);
+  
+  // Remover evento de teclado ESC
+  document.removeEventListener('keydown', handleEscKey);
+  
+  // Remover classe do cursor personalizado
+  const cursor = document.getElementById('customCursor');
+  if (cursor) {
+    cursor.classList.remove('in-modal');
+  }
+}
+
+// Lidar com a tecla ESC
+function handleEscKey(event) {
+  if (event.key === 'Escape') {
+    const modals = document.getElementsByClassName('modal');
+    for (let i = 0; i < modals.length; i++) {
+      if (getComputedStyle(modals[i]).display !== 'none') {
+        const modalId = modals[i].id;
+        closeModal(modalId);
+      }
+    }
+  }
+}
+
+// Fechar o modal ao clicar fora da área de conteúdo
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('modal') && event.target.classList.contains('active')) {
+    const modalId = event.target.id;
+    closeModal(modalId);
+  }
+});
+
+// Adicionar navegação com tabs dentro do modal
+document.addEventListener('DOMContentLoaded', function() {
+  const modals = document.querySelectorAll('.modal');
+  
+  modals.forEach(modal => {
+    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    modal.addEventListener('keydown', function(event) {
+      if (event.key === 'Tab') {
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
+      }
+    });
+  });
+  
+  // Adicionar efeito de zoom nas imagens do modal
+  const screenshots = document.querySelectorAll('.screenshot img');
+  screenshots.forEach(img => {
+    img.addEventListener('click', function() {
+      this.classList.toggle('zoomed');
+    });
+  });
+});
+  </script>
+</body>
+</html>
