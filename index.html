@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>João Lopes | Portfólio</title>
   <style>
+
+section {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      scroll-margin-top: 90px; /* Isso cria um espaço acima da seção quando rolamos até ela */
+    }
+
+    /* Outra opção seria adicionar padding-top às seções */
+    /*
+    section {
+      max-width: 1000px;
+      margin: 1rem auto;
+      padding: 3rem 1.5rem 0;
+    }
+    */
+
+    /* Atualização do script de rolagem suave */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px; /* Altura da navbar */
+    } 
     /* Estilos CSS */
     :root[data-theme="dark"] {
       --bg-color: #121212;
@@ -55,57 +77,161 @@
       color: rgba(255, 255, 255, 0.85);
     }
 
-    /* Nova navegação corrigida */
-    nav {
-      background: var(--nav-bg);
-      padding: 0.6rem 1rem;
+    /* Modern Navigation Styles */
+    #main-nav {
+      background: rgba(31, 31, 31, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 0;
       position: sticky;
       top: 0;
       z-index: 999;
-      box-shadow: 0 2px 8px var(--shadow-color);
+      box-shadow: 0 4px 12px var(--shadow-color);
+      transition: all 0.3s ease;
+      height: 70px;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      animation: slideInDown 1s ease-out forwards;
+      height: 100%;
+      padding: 0 1.5rem;
     }
 
-    nav ul {
+    .logo {
+      font-weight: 800;
+      font-size: 1.8rem;
+    }
+
+    .logo a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .logo a:hover {
+      text-shadow: 0 0 10px var(--accent-color);
+    }
+
+    .nav-links {
       display: flex;
       list-style: none;
+      margin: 0;
       padding: 0;
-      margin: 0;
-      gap: 1rem;
-      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
-    nav li {
-      margin: 0;
-    }
-
-    nav a {
+    .nav-item {
       color: var(--text-color);
       text-decoration: none;
       font-weight: 600;
-      padding: 0.4rem 0.8rem;
+      padding: 0.6rem 1rem;
       border-radius: 4px;
       transition: all 0.3s ease;
-      display: block;
+      position: relative;
     }
 
-    nav a:hover {
+    .nav-item:hover, .nav-item.active {
       color: var(--accent-color);
-      background: rgba(108, 92, 231, 0.1);
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+
+    .nav-item:hover::after, .nav-item.active::after {
+      width: 70%;
+      opacity: 1;
+    }
+
+    .language-selector-container {
+      position: relative;
     }
 
     #languageSelector {
-      background: var(--accent-color);
-      color: white;
-      border: none;
+      background: rgba(108, 92, 231, 0.2);
+      color: var(--text-color);
+      border: 1px solid var(--accent-color);
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       border-radius: 6px;
       cursor: pointer;
       min-width: 120px;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23a363d9%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.7rem top 50%;
+      background-size: 0.65rem auto;
+      padding-right: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    #languageSelector:hover, #languageSelector:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px rgba(163, 99, 217, 0.2);
+    }
+
+    /* Hamburger Menu for Mobile */
+    .hamburger-menu {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .bar {
+      width: 100%;
+      height: 3px;
+      background-color: var(--text-color);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    /* Back to Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--accent-color);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+
+    #backToTop.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #backToTop:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
     }
 
     section {
@@ -591,21 +717,50 @@
         font-size: 1rem;
       }
 
-      nav {
+      .hamburger-menu {
+        display: flex;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(31, 31, 31, 0.95);
+        backdrop-filter: blur(10px);
         flex-direction: column;
-        padding: 0.8rem;
+        align-items: center;
+        padding: 1rem 0;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: all 0.5s ease-in-out;
       }
-
-      nav ul {
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 0.8rem;
+      
+      .nav-links.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        box-shadow: 0 8px 12px var(--shadow-color);
       }
-
-      #languageSelector {
+      
+      .nav-links li {
         width: 100%;
-        max-width: 200px;
-        margin: 0 auto;
+        text-align: center;
+        margin: 0.5rem 0;
+      }
+      
+      .nav-item {
+        display: block;
+        padding: 0.8rem 1rem;
+      }
+      
+      .nav-item::after {
+        bottom: -2px;
+      }
+      
+      #main-nav.menu-open {
+        height: auto;
+      }
+      
+      .language-selector-container {
+        margin-left: auto;
       }
 
       .project-grid {
@@ -615,14 +770,21 @@
 
     /* Responsividade para telas muito pequenas */
     @media (max-width: 480px) {
-      nav ul {
-        flex-direction: column;
-        align-items: center;
+      .logo {
+        font-size: 1.5rem;
       }
-
-      nav li {
-        width: 100%;
-        text-align: center;
+      
+      #languageSelector {
+        min-width: 100px;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+      }
+      
+      #backToTop {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
       }
 
       #contactForm {
@@ -643,38 +805,59 @@
     <p data-lang="es" style="display:none;">Desarrollador Web y Diseñador</p>
   </header>
 
-  <nav>
-    <ul>
-      <li data-lang="pt"><a href="#about">Sobre</a></li>
-      <li data-lang="en" style="display:none;"><a href="#about">About</a></li>
-      <li data-lang="es" style="display:none;"><a href="#about">Sobre mí</a></li>
+  <!-- Nova navegação atualizada -->
+  <nav id="main-nav">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="#">JL</a>
+      </div>
+      
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-item" data-lang="pt">Sobre</a></li>
+        <li><a href="#about" class="nav-item" data-lang="en" style="display:none;">About</a></li>
+        <li><a href="#about" class="nav-item" data-lang="es" style="display:none;">Sobre mí</a></li>
 
-      <li data-lang="pt"><a href="#projects">Projetos</a></li>
-      <li data-lang="en" style="display:none;"><a href="#projects">Projects</a></li>
-      <li data-lang="es" style="display:none;"><a href="#projects">Proyectos</a></li>
+        <li><a href="#projects" class="nav-item" data-lang="pt">Projetos</a></li>
+        <li><a href="#projects" class="nav-item" data-lang="en" style="display:none;">Projects</a></li>
+        <li><a href="#projects" class="nav-item" data-lang="es" style="display:none;">Proyectos</a></li>
 
-      <li data-lang="pt"><a href="#language">Idiomas</a></li>
-      <li data-lang="en" style="display:none;"><a href="#language">Languages</a></li>
-      <li data-lang="es" style="display:none;"><a href="#language">Idiomas</a></li>
+        <li><a href="#language" class="nav-item" data-lang="pt">Idiomas</a></li>
+        <li><a href="#language" class="nav-item" data-lang="en" style="display:none;">Languages</a></li>
+        <li><a href="#language" class="nav-item" data-lang="es" style="display:none;">Idiomas</a></li>
 
-      <li data-lang="pt"><a href="#experience">Experiências</a></li>
-      <li data-lang="en" style="display:none;"><a href="#experience">Experience</a></li>
-      <li data-lang="es" style="display:none;"><a href="#experience">Experiencia</a></li>
+        <li><a href="#experience" class="nav-item" data-lang="pt">Experiências</a></li>
+        <li><a href="#experience" class="nav-item" data-lang="en" style="display:none;">Experience</a></li>
+        <li><a href="#experience" class="nav-item" data-lang="es" style="display:none;">Experiencia</a></li>
 
-      <li data-lang="pt"><a href="#skills">Habilidades</a></li>
-      <li data-lang="en" style="display:none;"><a href="#skills">Skills</a></li>
-      <li data-lang="es" style="display:none;"><a href="#skills">Habilidades</a></li>
+        <li><a href="#skills" class="nav-item" data-lang="pt">Habilidades</a></li>
+        <li><a href="#skills" class="nav-item" data-lang="en" style="display:none;">Skills</a></li>
+        <li><a href="#skills" class="nav-item" data-lang="es" style="display:none;">Habilidades</a></li>
 
-      <li data-lang="pt"><a href="#contact">Contato</a></li>
-      <li data-lang="en" style="display:none;"><a href="#contact">Contact</a></li>
-      <li data-lang="es" style="display:none;"><a href="#contact">Contacto</a></li>
-    </ul>
-    <select id="languageSelector">
-      <option value="pt">Português</option>
-      <option value="en">English</option>
-      <option value="es">Español</option>
-    </select>
+        <li><a href="#contact" class="nav-item" data-lang="pt">Contato</a></li>
+        <li><a href="#contact" class="nav-item" data-lang="en" style="display:none;">Contact</a></li>
+        <li><a href="#contact" class="nav-item" data-lang="es" style="display:none;">Contacto</a></li>
+      </ul>
+      
+      <div class="language-selector-container">
+        <select id="languageSelector">
+          <option value="pt">Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
+    </div>
   </nav>
+
+  <!-- Botão voltar ao topo -->
+  <button id="backToTop" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <section id="about">
     <h2 data-lang="pt">Sobre Mim</h2>
@@ -712,13 +895,13 @@
         </a>
       </div>
 
-      <div class="project">
+      <!-- <div class="project">
         <h3>App de Anotações</h3>
         <p>Aplicativo simples para gerenciamento de anotações e tarefas diárias.</p>
         <a href="#" target="_blank">
           <button class="project-button">Ver Código</button>
         </a>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -744,7 +927,7 @@
           <h4>Tecnologias utilizadas</h4>
           <ul>
             <li>Lua (linguagem principal)</li>
-            <li>Framework ESX para FiveM</li>
+            <li>Framework QBcore para FiveM</li>
             <li>MySQL para armazenamento de dados</li>
             <li>JavaScript para elementos de interface</li>
           </ul>
