@@ -889,10 +889,16 @@ section {
       
       <div class="project">
         <h3>Site Responsivo</h3>
-        <p>Site responsivo desenvolvido com HTML, CSS e JavaScript para mim mesmmo.</p>
+        <p>Site responsivo desenvolvido com HTML, CSS e JavaScript para mim mesmo.</p>
         <a href="#" target="_blank">
           <button class="project-button">Visualizar Site</button>
         </a>
+      </div>
+
+      <div class="project">
+        <h3>Site para Gabinete de Avac</h3>
+        <p>Site desenvolvido com HTML, CSS e JavaScript para um Gabinete de Avac com várias funções.</p>
+        <button class="project-button" onclick="openModal('site-modal')">Ver Detalhes</button>
       </div>
 
       <!-- <div class="project">
@@ -984,6 +990,63 @@ end)
         </button>
         <button onclick="window.open('https://github.com/J0ny01/fivem-scripts', '_blank')">
           Ver no GitHub <i class="fas fa-external-link-alt"></i>
+        </button>
+        <button onclick="alert('Funcionalidade em desenvolvimento!')">
+          Próximo projeto <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="site-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('site-modal')">&times;</span>
+      <h2>Site para Gabinete de AVAC - Detalhes</h2>
+      <div class="modal-grid">
+        <div class="modal-info">
+          <h4>Sobre o projeto</h4>
+          <p>Este projeto consiste em um website responsivo para a GabAvac, uma empresa especializada em certificação AVAC (Aquecimento, Ventilação e Ar Condicionado) na região de Leiria, Portugal. O site foi desenvolvido com as seguintes funcionalidades:</p>
+          <ul>
+            <li>Design moderno e responsivo com navegação intuitiva</li>
+            <li>Apresentação detalhada dos serviços de certificação AVAC</li>
+            <li>Seções informativas sobre certificações residenciais, comerciais e industriais</li>
+            <li>Sistema de testemunhos de clientes satisfeitos</li>
+            <li>Seção de FAQ para esclarecimento de dúvidas comuns</li>
+            <li>Formulário de contacto funcional para solicitações de orçamentos</li>
+            <li>Toggle de tema claro/escuro para melhor experiência do usuário</li>
+          </ul>
+          <h4>Tecnologias utilizadas</h4>
+          <ul>
+            <li>HTML5 para estruturação do conteúdo</li>
+            <li>CSS3 com animações e efeitos visuais</li>
+            <li>JavaScript para interatividade (navegação, FAQs expansíveis, formulário)</li>
+            <li>FontAwesome para ícones responsivos</li>
+            <li>Design mobile-first para garantir compatibilidade em todos os dispositivos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-screenshots">
+        <h4>Capturas de tela</h4>
+        <div class="screenshot-grid">
+          <div class="screenshot">
+            <img src="https://media.discordapp.net/attachments/1091410310742671486/1365129542741786707/Captura_de_ecra_2025-04-25_as_01.55.47.png?ex=680c2f75&is=680addf5&hm=e61132b6b68e5b0ad326a3b13af283d0fa232f5e42f507c453fd26c5e3ad984a&=&format=webp&quality=lossless&width=1740&height=1088" alt="Página inicial GabAvac">
+            <p>Página inicial com navegação e seção "Sobre Nós"</p>
+          </div>
+          <div class="screenshot">
+            <img src="https://media.discordapp.net/attachments/1091410310742671486/1365129543635177583/Captura_de_ecra_2025-04-25_as_01.56.03.png?ex=680c2f76&is=680addf6&hm=7411de391ffdafccd62856b17b386b75c9046a3f0a364f0c8fb96f5e4eba3a36&=&format=webp&quality=lossless&width=1740&height=1088" alt="Seção de Certificações">
+            <p>Seção de Certificações AVAC (Residencial, Comercial e Industrial)</p>
+          </div>
+          <div class="screenshot">
+            <img src="https://cdn.discordapp.com/attachments/1091410310742671486/1365129839526543380/Captura_de_ecra_2025-04-25_as_01.56.30.png?ex=680c2fbc&is=680ade3c&hm=f5cfe396f93edc4f511aa22f16a3ff2b4c115bc28dfc20498504dcb8ff972c3d&" alt="Formulário de contacto">
+            <p>Formulário de contacto e informações da empresa</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-nav">
+        <button onclick="alert('Funcionalidade em desenvolvimento!')">
+          <i class="fas fa-chevron-left"></i> Projeto anterior
+        </button>
+        <button onclick="window.open('https://gabavac.com', '_blank')">
+          Ver no Site <i class="fas fa-external-link-alt"></i>
         </button>
         <button onclick="alert('Funcionalidade em desenvolvimento!')">
           Próximo projeto <i class="fas fa-chevron-right"></i>
@@ -1233,6 +1296,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+
+
   </script>
 </body>
 </html>
